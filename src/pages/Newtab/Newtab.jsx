@@ -117,6 +117,7 @@ const Newtab = () => {
     config: config.wobbly,
     delay: 2000,
   });
+
   return (
     <ChakraProvider>
       <Box className="App" position="relative" w="100vw" h="100vh">
