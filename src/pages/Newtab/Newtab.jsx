@@ -62,6 +62,15 @@ const Card = ({ cardHeader, cardText, link, marginLeft }) => {
 };
 
 const Newtab = () => {
+  const [email, setEmail] = React.useState('');
+  chrome.identity.getProfileUserInfo({ accountStatus: 'ANY' }, function (info) {
+    console.log('ppppp', info)
+    if (info.email) {
+      setEmail(info.email)
+    }
+  });
+
+  const text = `Hello${email ? `, ${email}` : ''}!`;
   return (
     <ChakraProvider>
       <Box className="App" position="relative">
