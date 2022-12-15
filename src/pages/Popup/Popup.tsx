@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Flex } from '@chakra-ui/react'
 import { UserSelection } from '../Components/user-selection';
 
-const Newtab = () => {
+const Popup = () => {
   const [user, setUser] = React.useState<{ id: string, email: string } | undefined>(undefined);
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const Newtab = () => {
   );
 };
 
-export default Newtab;
+export default Popup;

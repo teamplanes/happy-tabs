@@ -1,23 +1,19 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Select from 'react-select';
+import { Tags } from "../../types";
 import { getItem, setItem } from "../Utils/storage";
+import { STORAGE_ITEMS_KEY } from '../../consts';
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'mint', label: 'Mint' },
-    { value: 'peach', label: 'Peach' },
-    { value: 'vanilla', label: 'Vanilla' },
-    { value: 'caramel', label: 'Caramel' },
-    { value: 'coffee', label: 'Coffee' },
-    { value: 'raspberry', label: 'Raspberry' },
-    { value: 'lemon', label: 'Lemon' },
-    { value: 'lime', label: 'Lime' },
-    { value: 'orange', label: 'Orange' },
-    { value: 'watermelon', label: 'Watermelon' },
-    { value: 'grape', label: 'Grape' },
-];
+const options = Object.values(Tags).map((e) => {
+    const split = e.split(/(?=[A-Z])/);
+    return {
+        value: e,
+        label: split.map((e) => {
+            return e[0].toUpperCase() + e.slice(1);
+        }).join(' '),
+    }
+});
 
 type Option = {
     value: string;
@@ -28,12 +24,12 @@ export const UserSelection = ({ width, email, userId, isLoading, selections }: {
     const [selected, setSelected] = useState<Option[]>((selections || []) as Option[]);
     const [loading, setLoading] = useState(true);
 
-    const text = `Hello${email ? `, ${email.split('@')[0]}` : ' Sexy'}!`;
+    const text = `Hello${email ? `, ${email.split('@')[0]}` : ' Cherry Pie!'}!`;
 
     useEffect(() => {
         const setItems = async () => {
             if (selected.length > 0) {
-                await setItem('user-selection', JSON.stringify({ [userId]: selected.map((e) => e.value) }));
+                await setItem(STORAGE_ITEMS_KEY, JSON.stringify({ [userId]: selected.map((e) => e.value) }));
             }
         }
         setItems();
@@ -42,7 +38,7 @@ export const UserSelection = ({ width, email, userId, isLoading, selections }: {
     useEffect(() => {
         if (!userId) return;
         const getItems = async () => {
-            const results = await getItem('user-selection');
+            const results = await getItem(STORAGE_ITEMS_KEY);
             if (results) {
                 const parsed = JSON.parse(results as unknown as string);
                 Object.keys(parsed)?.includes(userId) ? setSelected(parsed[userId].map((e: string) => ({ value: e, label: e }))) : setSelected([]);
@@ -61,6 +57,8 @@ export const UserSelection = ({ width, email, userId, isLoading, selections }: {
             </Flex>
         )
     }
+
+
 
     return (
         <Flex flex={1} direction="column">
