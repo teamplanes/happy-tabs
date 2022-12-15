@@ -376,7 +376,8 @@ const Newtab = () => {
     ]
     let randomName = names[Math.floor(Math.random() * names.length)]
     const text = `${user?.email ? `${user?.email.split('@')[0]}` : randomName}`;
-    return <Content pageData={pageData} name={text} shuffle={() => {
+    const titlizedText = text.charAt(0).toUpperCase() + text.slice(1);
+    return <Content pageData={pageData} name={titlizedText} shuffle={() => {
 
       const length = selected.length
       if (length) {
