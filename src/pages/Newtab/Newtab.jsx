@@ -1,3 +1,4 @@
+
 import React, { useEffect, useMemo, useCallback } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import {
@@ -11,9 +12,8 @@ import {
 import { useState } from 'react';
 import { getItem } from '../Utils/storage'
 import { UserSelection } from '../Components/user-selection';
-import { STORAGE_ITEMS_KEY } from '../../consts'
+import { STORAGE_ITEMS_KEY, data } from '../../consts'
 
-import { data } from '../../types'
 
 
 const Card = ({ cardHeader, cardText, link, marginLeft, isArticle }) => {
