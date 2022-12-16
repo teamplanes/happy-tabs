@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useCallback } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import {
@@ -10,14 +9,11 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { getItem } from '../Utils/storage'
+import { getItem } from '../Utils/storage';
 import { UserSelection } from '../Components/user-selection';
-import { STORAGE_ITEMS_KEY, data } from '../../consts'
-
-
+import { STORAGE_ITEMS_KEY, data } from '../../consts';
 
 const Card = ({ cardHeader, cardText, link, marginLeft, isArticle }) => {
-
   return (
     <Flex
       direction="column"
@@ -106,7 +102,6 @@ const Content = ({ pageData, shuffle, name }) => {
     delay: 2000,
   });
   return (
-
     <Box className="App" position="relative" w="100vw" h="100vh">
       <animated.div w="105vw" h="auto" position="absolute" style={slide}>
         <Flex
@@ -191,29 +186,32 @@ const Content = ({ pageData, shuffle, name }) => {
         </Flex>
       </Flex>
     </Box>
-  )
-}
+  );
+};
 
 const Newtab = () => {
   const [pageData, setPageData] = useState(undefined);
   const [selected, setSelected] = useState([]);
   const [user, setUser] = useState(undefined);
-  const [loading, setLoading] = useState(true)
-  const [anim, setAnim] = useState(true)
-  const userId = user?.id
+  const [loading, setLoading] = useState(true);
+  const [anim, setAnim] = useState(true);
+  const userId = user?.id;
 
   useEffect(() => {
-    chrome.identity.getProfileUserInfo({ accountStatus: 'ANY' }, function (info) {
-      if (info.email) {
-        setUser(info)
+    chrome.identity.getProfileUserInfo(
+      { accountStatus: 'ANY' },
+      function (info) {
+        if (info.email) {
+          setUser(info);
+        }
       }
-    });
+    );
   }, []);
 
   const loadingAnimationDelay = 300;
 
   useEffect(() => {
-    const length = selected.length
+    const length = selected.length;
     if (length) {
       const randomIndex = Math.floor(Math.random() * length);
       const randomItemId = selected[randomIndex].value;
@@ -222,33 +220,32 @@ const Newtab = () => {
       const randomDataIndex = Math.floor(Math.random() * randomData.length);
       const randomItem = randomData[randomDataIndex];
       setPageData(randomItem);
-
     }
-  }, [selected])
+  }, [selected]);
 
   const handleAnim = useCallback(() => {
-
     const delay = 1200;
 
     setTimeout(() => {
-      setAnim(false)
+      setAnim(false);
     }, delay);
 
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, delay + 100 + loadingAnimationDelay);
-  }, [])
+  }, []);
 
   const getItems = useCallback(async () => {
     const results = await getItem(STORAGE_ITEMS_KEY);
 
     if (results) {
       const parsed = JSON.parse(results);
-      Object.keys(parsed)?.includes(userId) ? setSelected(parsed[userId].map((e) => ({ value: e, label: e }))) : setSelected([]);
-
+      Object.keys(parsed)?.includes(userId)
+        ? setSelected(parsed[userId].map((e) => ({ value: e, label: e })))
+        : setSelected([]);
     }
-    handleAnim()
-  }, [handleAnim, userId])
+    handleAnim();
+  }, [handleAnim, userId]);
 
   useEffect(() => {
     if (!userId) return;
@@ -259,18 +256,25 @@ const Newtab = () => {
   const renderContent = useMemo(() => {
     if (!userId) {
       return (
-        <Box position="relative" w="100vw" h="100vh" backgroundColor="green.300">
-          <Flex
-            justifyContent="center"
-            height="100%"
-          >
-            <Flex direction="row" flex={1} height="100%" justifyContent="center">
-
+        <Box
+          position="relative"
+          w="100vw"
+          h="100vh"
+          backgroundColor="green.300"
+        >
+          <Flex justifyContent="center" height="100%">
+            <Flex
+              direction="row"
+              flex={1}
+              height="100%"
+              justifyContent="center"
+            >
               <Flex
                 flex={1}
                 direction="column"
                 justifyContent="center"
-                height="100%">
+                height="100%"
+              >
                 <Text
                   fontSize="30px"
                   color="black"
@@ -280,19 +284,19 @@ const Newtab = () => {
                   fontFamily="Quicksand"
                   fontWeight={700}
                 >
-                  Hello! Please sign in to use this extension   😜
+                  Hello! Please sign in to use this extension 😜
                 </Text>
               </Flex>
             </Flex>
           </Flex>
         </Box>
-      )
+      );
     }
 
     if (loading) {
       const dimensions = 300;
       const multiplier = 1 / 2;
-      console.log('herrrrre', anim)
+      console.log('herrrrre', anim);
       return (
         <Fade
           in={anim}
@@ -301,41 +305,87 @@ const Newtab = () => {
             exit: { duration: loadingAnimationDelay / 1000 },
           }}
         >
-          <Box position="relative" w="100vw" h="100vh" backgroundColor="green.300">
-            <Flex direction="row" flex={1} height="100%" justifyContent="center" pt={dimensions / 2}>
-              <Box height={dimensions * (1 + multiplier)} width={dimensions * (1 + multiplier)} bg="white" borderRadius={"50%"}>
-                <Flex direction="row" pl={dimensions * (multiplier / 2)} flex={1} height="100%" justifyContent="center">
+          <Box
+            position="relative"
+            w="100vw"
+            h="100vh"
+            backgroundColor="green.300"
+          >
+            <Flex
+              direction="row"
+              flex={1}
+              height="100%"
+              justifyContent="center"
+              pt={dimensions / 2}
+            >
+              <Box
+                height={dimensions * (1 + multiplier)}
+                width={dimensions * (1 + multiplier)}
+                bg="white"
+                borderRadius={'50%'}
+              >
+                <Flex
+                  direction="row"
+                  pl={dimensions * (multiplier / 2)}
+                  flex={1}
+                  height="100%"
+                  justifyContent="center"
+                >
                   <Flex direction="column" flex={1} justifyContent="center">
-                    <img src={require('../../assets/img/loading.gif')} alt="loading..." style={{ width: dimensions, height: dimensions, justifyContent: 'center' }} />
+                    <img
+                      src={require('../../assets/img/loading.gif')}
+                      alt="loading..."
+                      style={{
+                        width: dimensions,
+                        height: dimensions,
+                        justifyContent: 'center',
+                      }}
+                    />
                   </Flex>
                 </Flex>
               </Box>
             </Flex>
           </Box>
-        </Fade >
-      )
+        </Fade>
+      );
     }
 
     if (!selected.length) {
       return (
-        <Fade in={true}
+        <Fade
+          in={true}
           transition={{
             enter: { duration: 0.3 },
-          }}>
-          <Box position="relative" w="100vw" h="100vh" backgroundColor="green.300">
-            <Flex
-              justifyContent="center"
-              height="100%"
-            >
-              <Flex direction="row" pb={300} flex={1} height="100%" width="100%" justifyContent="center">
+          }}
+        >
+          <Box
+            position="relative"
+            w="100vw"
+            h="100vh"
+            backgroundColor="green.300"
+          >
+            <Flex justifyContent="center" height="100%">
+              <Flex
+                direction="row"
+                pb={300}
+                flex={1}
+                height="100%"
+                width="100%"
+                justifyContent="center"
+              >
                 <Flex flex={1} />
                 <Flex
                   flex={1}
                   direction="column"
                   justifyContent="center"
-                  height="100%">
+                  height="100%"
+                >
                   <Box width={500}>
-                    <UserSelection email={user?.email} width={500} userId={userId} />
+                    <UserSelection
+                      email={user?.email}
+                      width={500}
+                      userId={userId}
+                    />
                   </Box>
                   <Flex direction="row">
                     <Flex flex={1} />
@@ -347,9 +397,9 @@ const Newtab = () => {
                       m={4}
                       //  disabled={!selected.length}
                       onClick={() => {
-                        setAnim(true)
-                        setLoading(true)
-                        getItems()
+                        setAnim(true);
+                        setLoading(true);
+                        getItems();
                       }}
                       borderRadius="2xl"
                       border="3px solid black"
@@ -364,7 +414,7 @@ const Newtab = () => {
             </Flex>
           </Box>
         </Fade>
-      )
+      );
     }
     const names = [
       'Sunshine',
@@ -372,35 +422,46 @@ const Newtab = () => {
       'Sunshine Pie!',
       'Cherry Sweet!',
       'My Superstar!',
-      'Legenddddd!'
-    ]
-    let randomName = names[Math.floor(Math.random() * names.length)]
+      'Legenddddd!',
+    ];
+    let randomName = names[Math.floor(Math.random() * names.length)];
     const text = `${user?.email ? `${user?.email.split('@')[0]}` : randomName}`;
     const titlizedText = text.charAt(0).toUpperCase() + text.slice(1);
-    return <Content pageData={pageData} name={titlizedText} shuffle={() => {
+    return (
+      <Content
+        pageData={pageData}
+        name={titlizedText}
+        shuffle={() => {
+          const length = selected.length;
+          if (length) {
+            setAnim(true);
+            setLoading(true);
+            const randomIndex = Math.floor(Math.random() * length);
+            const randomItemId = selected[randomIndex].value;
 
-      const length = selected.length
-      if (length) {
-        setAnim(true)
-        setLoading(true)
-        const randomIndex = Math.floor(Math.random() * length);
-        const randomItemId = selected[randomIndex].value;
+            const randomData = data[randomItemId];
+            const randomDataIndex = Math.floor(
+              Math.random() * randomData.length
+            );
+            const randomItem = randomData[randomDataIndex];
+            setPageData(randomItem);
+            handleAnim();
+          }
+        }}
+      />
+    );
+  }, [
+    anim,
+    getItems,
+    handleAnim,
+    loading,
+    pageData,
+    selected,
+    user?.email,
+    userId,
+  ]);
 
-        const randomData = data[randomItemId];
-        const randomDataIndex = Math.floor(Math.random() * randomData.length);
-        const randomItem = randomData[randomDataIndex];
-        setPageData(randomItem);
-        handleAnim()
-
-      }
-    }} />
-  }, [anim, getItems, handleAnim, loading, pageData, selected, user?.email, userId])
-
-  return (
-    <ChakraProvider>
-      {renderContent}
-    </ChakraProvider>
-  );
+  return <ChakraProvider>{renderContent}</ChakraProvider>;
 };
 
 export default Newtab;
