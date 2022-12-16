@@ -25,7 +25,7 @@ const Popup = () => {
     <Flex
       maxWidth={popUpDimensions}
       maxHeight={popUpDimensions}
-      overflow="scroll"
+      // overflow="scroll"
     >
       <Flex
         justify="center"
@@ -33,7 +33,7 @@ const Popup = () => {
         flex={1}
         justifyContent="center"
         alignItems="center"
-        height="100%"
+        height={popUpDimensions}
       >
         <Flex justify="center" direction="row">
           <Flex
