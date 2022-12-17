@@ -62,8 +62,8 @@ export const UserSelection = ({
         const parsed = JSON.parse(results as unknown as string);
         Object.keys(parsed)?.includes(userId)
           ? setSelected(
-              parsed[userId].map((e: string) => ({ value: e, label: e }))
-            )
+            parsed[userId].map((e: string) => ({ value: e, label: e }))
+          )
           : setSelected([]);
       }
       setLoading(false);
@@ -87,7 +87,7 @@ export const UserSelection = ({
           fontSize="24px"
           color="black"
           lineHeight="30px"
-          pb={28}
+          pb={8}
           fontFamily="Quicksand"
           fontWeight={700}
           m={0}
@@ -98,7 +98,7 @@ export const UserSelection = ({
           fontSize="18px"
           color="black"
           lineHeight="30px"
-          pb={16}
+          pb={6}
           fontFamily="Quicksand"
           fontWeight={700}
           m={0}

@@ -351,6 +351,7 @@ const Newtab = () => {
     }
 
     if (!selected.length) {
+      const width = 500;
       return (
         <Fade
           in={true}
@@ -380,14 +381,14 @@ const Newtab = () => {
                   justifyContent="center"
                   height="100%"
                 >
-                  <Box width={500}>
+                  <Box width={width}>
                     <UserSelection
                       email={user?.email}
-                      width={500}
+                      width={width}
                       userId={userId}
                     />
                   </Box>
-                  <Flex direction="row">
+                  <Flex width={width} direction="row">
                     <Flex flex={1} />
 
                     <Button

@@ -1,9 +1,47 @@
 import { MainPageData, Tags } from "./types";
 
-const STORAGE_ITEMS_KEY = 'ussser-selectionss';
+const STORAGE_ITEMS_KEY = 'happy-tabs-items';
 
 export const data: MainPageData = {
     [Tags.Environment]: [
+        {
+            news: {
+                headline: 'Scientists discover new species of giant sea spider.',
+                story:
+                    'A new species of giant sea spider has been discovered in the waters off the coast of Japan. The spider, which is the size of a human hand, was found by scientists from the University of Tokyo and the National Museum of Nature and Science in Tokyo.',
+            },
+            backgroundImage:
+                'https://hips.hearstapps.com/digitalspyuk.cdnds.net/13/12/odd_giant_crab.jpg',
+            factOrTip: {
+                title: 'Top tip: Use reusable bags',
+                text: 'Plastic bags are a major source of pollution. Use reusable bags instead.',
+
+            },
+            helpfulSite: {
+                link: 'https://www.earthday.org/',
+                title: 'You might also like...',
+                text: 'Earth Day',
+            },
+        },
+        {
+            news: {
+                headline: "France is giving €4,000 to people who trade in their car for an e-bike",
+                story:
+                    "France is giving €4,000 to people who trade in their car for an e-bike. The government is hoping to encourage people to switch to greener forms of transport as part of its efforts to reduce carbon emissions.",
+            },
+            backgroundImage:
+                'https://www.electrive.com/wp-content/uploads/2020/11/serial-1-rush-e-bike-pedelec-2020-01-min.png',
+            factOrTip: {
+                title: 'Top tip: Use public transport',
+                text: 'Using public transport is a great way to reduce your carbon footprint. It also saves you money.',
+            },
+            helpfulSite: {
+                link: 'https://www.earthday.org/',
+                title: 'You might also like...',
+                text: 'Earth Day',
+            },
+
+        },
         {
             news: {
                 headline: 'Pink dolphins repopulate Hong Kong waters',
@@ -62,6 +100,43 @@ export const data: MainPageData = {
     [Tags.ScienceTechnology]: [
         {
             news: {
+                headline: 'Computer chip made using mushroom skin could be easily recycled',
+                story:
+                    'A new type of computer chip has been created using mushroom skin. The chip is made from cellulose, which is a material that is found in the cell walls of plants and fungi. The chip is also biodegradable, which means that it can be easily recycled.',
+            },
+            backgroundImage:
+                'https://images.newscientist.com/wp-content/uploads/2022/11/11161132/SEI_133177235.jpg',
+            factOrTip: {
+                title: 'Top tip: Use reusable bags',
+                text: 'Plastic bags are a major source of pollution. Use reusable bags instead.',
+            },
+            helpfulSite: {
+                link: 'https://www.earthday.org/',
+                title: 'You might also like...',
+                text: 'Earth Day',
+            },
+        },
+        {
+            news: {
+                headline: 'Scientists Create Anti-Bacterial Food Packaging Inspired By Insect Wings',
+                story:
+                    'Scientists have created a new type of anti-bacterial food packaging that is inspired by the wings of insects. The new packaging is made from a thin layer of graphene oxide, which is a material that is 200 times thinner than a human hair.',
+            },
+            backgroundImage:
+                'https://res.cloudinary.com/dysirhng8/image/upload/v1671205105/happy%20tabs/sensei-minimal-JvZYXvzlISQ-unsplash_nmunrc.jpg',
+            factOrTip: {
+                title: 'Top tip: Use reusable bags',
+                text: 'Plastic bags are a major source of pollution. Use reusable bags instead.',
+            },
+            helpfulSite: {
+                link: 'https://www.earthday.org/',
+                title: 'You might also like...',
+                text: 'Earth Day',
+            },
+
+        },
+        {
+            news: {
                 headline: 'Cancer vaccine reduces risk of recurrence or death by 44%',
                 story:
                     'Moderna’s new mRNA cancer vaccine significantly reduced skin cancer patients’ risk of recurrence or death compared to a standard treatment alone, according to the newly announced topline results of a phase 2 trial. “mRNA has been transformative for COVID-19, and now, for the first time ever, we have demonstrated the potential for mRNA to have an impact on outcomes in a randomized clinical trial in melanoma,” said Moderna CEO Stéphane Bancel.',
@@ -107,7 +182,7 @@ export const data: MainPageData = {
                 'https://www.nasa.gov/sites/default/files/thumbnails/image/stsci-01gkmk9dyd955y1rgw4jq8a4c6.png',
             factOrTip: {
                 title: 'Did you know?',
-                text: 'There are more planets than stars in our galaxy.',
+                text: 'The first computer system able to communicate from the surface of another planet, was The Soviet union in 1972 on Venus. It measured the temperature of the atmosphere on Venus. Venera 8 gathered atmospheric and surface data for 50 minutes after landing. It shortly disintegrated.',
             },
             helpfulSite: {
                 link: 'https://www.nasa.gov/mission_pages/webb/main/index.html',
@@ -172,6 +247,25 @@ export const data: MainPageData = {
                 text: 'UN Human Rights Programme',
             },
         },
+        {
+            news: {
+                headline: 'The first Human heart transplant!',
+                story:
+                    'On December 3, 1967, the first human heart transplant was performed by Dr. Christiaan Barnard at Groote Schuur Hospital in Cape Town, South Africa. The patient, Louis Washkansky, was a 53-year-old',
+            },
+            backgroundImage:
+                'http://www.news.uct.ac.za/images/userfiles/images/news/bite/2017/2017-11-29_Heart50.jpg',
+            factOrTip: {
+                title: 'Did you know?',
+                text: "I am having the most fun ever! I'm having a ball!",
+            },
+            helpfulSite: {
+                link: 'https://www.un.org/en/our-work/protect-human-rights',
+                title: 'You might also like...',
+                text: 'UN Human Rights Programme',
+            },
+        },
+
     ],
 };
 
